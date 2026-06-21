@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Claim.MD
+providerId: claim-md
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Claims
+- Clearinghouse
+- EDI
+- X12
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Claim.MD spend. Claim.MD is a medical-claims clearinghouse
+  billed per provider via sales-led agreements rather than transparent public
+  usage rates, so unit costs are not published. The natural cost and usage
+  dimensions for tracking are claims submitted, ERA processed, and eligibility
+  checks performed, allocated by billing provider / NPI and payer.
+notes: >-
+  Per-provider rates are negotiated and not public; confirm contract terms with
+  Claim.MD and instrument usage counts (claims, ERA, eligibility) for internal
+  allocation. Meters below describe usage to track, not published prices.
+sources:
+- https://www.claim.md/services-providers
+- https://www.claim.md/services-software-vendors
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Claim.MD
+serviceCategory: Healthcare Clearinghouse
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Claim.MD Clearinghouse
+  ServiceCategory: Healthcare Clearinghouse
+  ProviderName: Claim.MD
+  PublisherName: Claim.MD
+  InvoiceIssuerName: Claim.MD
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: claims_submitted
+  description: Claims submitted through the clearinghouse (837P/837I and other formats).
+  unit: claims
+  aggregation: sum
+  dimensions:
+  - account
+  - provider
+  - payer
+- name: era_processed
+  description: Electronic remittance advice (835) retrieved and processed.
+  unit: era
+  aggregation: sum
+  dimensions:
+  - account
+  - provider
+  - payer
+- name: eligibility_checks
+  description: Real-time eligibility (270/271) requests performed.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - provider
+  - payer
+- name: enrollments
+  description: Provider enrollment requests initiated through the API.
+  unit: enrollments
+  aggregation: sum
+  dimensions:
+  - account
+  - provider
+  - payer
+principles:
+- name: Visibility
+  description: Track claim, ERA, and eligibility counts per provider and payer against invoices.
+- name: Allocation
+  description: Map AccountKey usage and billing-provider/NPI to internal cost centers.
+- name: Optimization
+  description: Batch up to 2000 claims per upload and use incremental polling to minimize redundant API calls.
+- name: Accountability
+  description: Assign owners per provider account; review monthly clearinghouse spend against claim volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,70 @@
+aid: claim-md
+name: Claim.MD
+review:
+  question: Does Claim.MD expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No streaming transport (WebSocket or HTTP Server-Sent Events) is documented
+    for the Claim.MD API, so no AsyncAPI document was created. Asynchronous
+    delivery is handled by an HTTP webhook callback (POST /Webhook) for
+    enrollment and appeal updates, plus incremental REST polling for claim
+    responses, ERA, modifications, and notes.
+findings:
+  summary: |
+    Claim.MD does not publish a documented public WebSocket API. The Claim.MD
+    clearinghouse API is a request/response REST service under
+    https://svc.claim.md/services, authenticated with an AccountKey, returning
+    XML (default) or JSON. Near-real-time delivery is achieved through
+    incremental REST polling (ResponseID / ERAID / ModID / NoteID cursors) and
+    an HTTP webhook (POST /Webhook) that pushes enrollment and appeal events.
+    No realtime, bidirectional WebSocket (ws:// or wss://) or Server-Sent
+    Events endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://svc.claim.md/services
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: HTTP callback (POST /Webhook) delivering enrollment and appeal events as JSON. One-directional server-to-client HTTP, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Claim.MD API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://svc.claim.md/services/upload/
+    - POST https://svc.claim.md/services/uploadlist/
+    - POST https://svc.claim.md/services/response/
+    - POST https://svc.claim.md/services/modify/
+    - POST https://svc.claim.md/services/notes/
+    - POST https://svc.claim.md/services/archive/
+    - POST https://svc.claim.md/services/eralist/
+    - POST https://svc.claim.md/services/era835/
+    - POST https://svc.claim.md/services/eradata/
+    - POST https://svc.claim.md/services/erapdf/
+    - POST https://svc.claim.md/services/elig/
+    - POST https://svc.claim.md/services/eligdata/
+    - POST https://svc.claim.md/services/payerlist/
+    - POST https://svc.claim.md/services/enroll/
+    - POST https://svc.claim.md/services/appeal/
+sources:
+  - url: https://docs.claim.md/docs/api
+    type: Documentation
+    note: API overview; AccountKey auth, 100 requests/minute, XML/JSON responses.
+  - url: https://api.claim.md/
+    type: APIReference
+    note: Full endpoint reference under https://svc.claim.md/services; all HTTPS REST.
+  - url: https://docs.claim.md/docs/does-the-claimmd-api-support-batch-real-time-eligibility-requests
+    type: Documentation
+    note: Eligibility is one 270 request per patient; no batch real-time submission and no streaming.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Asynchronous updates are
+    delivered via an HTTP webhook and incremental REST polling, neither of
+    which is a WebSocket transport, so no AsyncAPI document was authored.

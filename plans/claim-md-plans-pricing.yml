@@ -1,0 +1,79 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Claim.MD
+providerId: claim-md
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Claims
+- Clearinghouse
+- EDI
+- X12
+- Plans
+description: >-
+  Claim.MD pricing is quoted per provider through its sales team and is not
+  published as fixed public self-service tiers. Pricing is typically structured
+  per billing provider / NPI with clearinghouse transaction processing
+  (claims, ERA, eligibility) included. Software vendors integrate through a
+  separate partner program. Exact per-provider rates are not publicly listed
+  and are not reconciled in this artifact.
+notes: >-
+  Contact Claim.MD sales for current per-provider pricing and software-vendor
+  partner terms. Values below are structural placeholders, not confirmed rates.
+sources:
+- https://www.claim.md/services-providers
+- https://www.claim.md/services-software-vendors
+- https://www.claim.md/contact
+plans:
+- id: claim-md-provider
+  name: Provider
+  type: subscription
+  description: >-
+    Per-provider clearinghouse access for healthcare providers and billing
+    services, covering electronic claim submission, claim status, ERA, and
+    eligibility. Priced per billing provider via sales.
+  entries:
+  - label: Per-Provider Subscription
+    name: per_provider
+    type: flat
+    metric: provider
+    limit: -1
+    timeFrame: month
+    geo: us
+    unit: 1
+    price: contact sales
+    userMultiplied: true
+  elements:
+  - name: Claim Submission (837P/837I)
+  - name: Claim Status
+  - name: ERA / Remits (835)
+  - name: Eligibility (270/271)
+  - name: Provider Enrollment
+- id: claim-md-software-vendor
+  name: Software Vendor
+  type: enterprise
+  description: >-
+    Partner integration program for practice-management and EHR software
+    vendors embedding Claim.MD clearinghouse services for their customer base.
+    Negotiated terms via sales.
+  entries:
+  - label: Vendor Integration Agreement
+    name: vendor_integration
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: us
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: API Integration
+  - name: White-Label Clearinghouse
+  - name: Webhook Notifications
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

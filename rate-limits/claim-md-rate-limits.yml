@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Claim.MD
+providerId: claim-md
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Claims
+- Clearinghouse
+- EDI
+- X12
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Claim.MD API documents a request rate ceiling of 100 requests per minute
+  per account, with a batch claim file allowed to contain between 1 and 2000
+  claims per upload call. The claim status response endpoint returns a maximum
+  of 20,000 results per request and is designed for incremental polling via
+  ResponseID. Real-time eligibility is one request per 270 file (no batch
+  real-time submission). Specific throttling response codes are not reconciled
+  in this artifact.
+notes: >-
+  Verify current limits in the Claim.MD API documentation during reconciliation;
+  observe the documented 100 requests/minute ceiling and use incremental
+  ID-based polling rather than tight loops.
+sources:
+- https://docs.claim.md/docs/api
+- https://docs.claim.md/docs/api-related-faqs
+- https://docs.claim.md/docs/does-the-claimmd-api-support-batch-real-time-eligibility-requests
+limits:
+- name: Requests Per Minute
+  scope: account
+  metric: requests
+  limit: 100
+  notes: API calls should not exceed 100 requests per minute per account.
+- name: Claims Per Upload
+  scope: request
+  metric: claims
+  limit: 2000
+  notes: A single claim file upload may contain between 1 and 2000 claims.
+- name: Response Results Per Request
+  scope: request
+  metric: results
+  limit: 20000
+  notes: The /services/response/ endpoint returns at most 20,000 results per call.
+- name: Eligibility Requests
+  scope: request
+  metric: requests
+  limit: 1
+  notes: One eligibility request per 270 file; no batch real-time eligibility submission.
+policies:
+- name: Incremental Polling
+  description: >-
+    Use last-seen identifiers (ResponseID, ERAID, ModID, NoteID) to retrieve
+    only new records rather than repolling the full dataset.
+- name: Pagination
+  description: >-
+    List endpoints (uploadlist, eralist) support Page-based pagination for
+    large result sets.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

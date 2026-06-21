@@ -1,0 +1,379 @@
+{
+  "info": {
+    "name": "Claim.MD API",
+    "description": "REST API for the Claim.MD medical-claims clearinghouse: claim submission (837P/837I), claim status, ERA/remits (835), eligibility (270/271), and reference endpoints. Authenticated with an AccountKey.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://svc.claim.md/services"
+    },
+    {
+      "key": "AccountKey",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Claims",
+      "item": [
+        {
+          "name": "Upload a batch claim file",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/upload/",
+              "host": ["{{baseUrl}}"],
+              "path": ["upload", ""]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "File", "type": "file", "src": [] }
+              ]
+            },
+            "description": "Upload 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format."
+          }
+        },
+        {
+          "name": "List uploaded files",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/uploadlist/",
+              "host": ["{{baseUrl}}"],
+              "path": ["uploadlist", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "Page", "value": "", "type": "text", "disabled": true }
+              ]
+            },
+            "description": "List previously uploaded claim files with counts and amounts."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Claim Status",
+      "item": [
+        {
+          "name": "Retrieve claim status responses",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/response/",
+              "host": ["{{baseUrl}}"],
+              "path": ["response", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "ResponseID", "value": "0", "type": "text" }
+              ]
+            },
+            "description": "Incrementally retrieve claim status responses. Use ResponseID=0 initially."
+          }
+        },
+        {
+          "name": "Retrieve claim modification events",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/modify/",
+              "host": ["{{baseUrl}}"],
+              "path": ["modify", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" }
+              ]
+            },
+            "description": "Incrementally retrieve claim field modification history."
+          }
+        },
+        {
+          "name": "Retrieve claim notes",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes/",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" }
+              ]
+            },
+            "description": "Incrementally retrieve user notes attached to claims."
+          }
+        },
+        {
+          "name": "Archive a claim",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/archive/",
+              "host": ["{{baseUrl}}"],
+              "path": ["archive", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "claimid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Archive or delete one or more claims by claim identifier."
+          }
+        }
+      ]
+    },
+    {
+      "name": "ERA",
+      "item": [
+        {
+          "name": "List electronic remittance advice",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/eralist/",
+              "host": ["{{baseUrl}}"],
+              "path": ["eralist", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "NewOnly", "value": "1", "type": "text" }
+              ]
+            },
+            "description": "List ERA (835) with payment details and incremental retrieval via ERAID."
+          }
+        },
+        {
+          "name": "Retrieve raw 835 ERA",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/era835/",
+              "host": ["{{baseUrl}}"],
+              "path": ["era835", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "eraid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Retrieve the raw X12 835 transaction for a single ERA."
+          }
+        },
+        {
+          "name": "Retrieve structured ERA detail",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/eradata/",
+              "host": ["{{baseUrl}}"],
+              "path": ["eradata", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "eraid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Retrieve claim-level remittance detail as structured XML or JSON."
+          }
+        },
+        {
+          "name": "Retrieve ERA as PDF",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/erapdf/",
+              "host": ["{{baseUrl}}"],
+              "path": ["erapdf", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "eraid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Retrieve a printable remittance report as a Base64-encoded PDF."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Eligibility",
+      "item": [
+        {
+          "name": "Submit eligibility request (270 file)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/elig/",
+              "host": ["{{baseUrl}}"],
+              "path": ["elig", ""]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "File", "type": "file", "src": [] }
+              ]
+            },
+            "description": "Submit a real-time eligibility request as an X12 270 file (one per patient)."
+          }
+        },
+        {
+          "name": "Submit eligibility request (field data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/eligdata/",
+              "host": ["{{baseUrl}}"],
+              "path": ["eligdata", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "ins_name_l", "value": "", "type": "text" },
+                { "key": "ins_name_f", "value": "", "type": "text" },
+                { "key": "payerid", "value": "", "type": "text" },
+                { "key": "pat_rel", "value": "18", "type": "text" },
+                { "key": "fdos", "value": "", "type": "text" },
+                { "key": "prov_npi", "value": "", "type": "text" },
+                { "key": "prov_taxid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Submit a real-time eligibility request using structured field data."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "item": [
+        {
+          "name": "Retrieve the payer directory",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payerlist/",
+              "host": ["{{baseUrl}}"],
+              "path": ["payerlist", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" }
+              ]
+            },
+            "description": "Look up payers and their supported service capabilities."
+          }
+        },
+        {
+          "name": "Request provider enrollment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/enroll/",
+              "host": ["{{baseUrl}}"],
+              "path": ["enroll", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "payerid", "value": "", "type": "text" },
+                { "key": "enroll_type", "value": "era", "type": "text" },
+                { "key": "prov_taxid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Initiate a provider enrollment request and receive an enrollment link."
+          }
+        },
+        {
+          "name": "Request a claim appeal",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/appeal/",
+              "host": ["{{baseUrl}}"],
+              "path": ["appeal", ""]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "AccountKey", "value": "{{AccountKey}}", "type": "text" },
+                { "key": "claimid", "value": "", "type": "text" }
+              ]
+            },
+            "description": "Initiate a claim appeal and receive an appeal form link."
+          }
+        }
+      ]
+    }
+  ]
+}

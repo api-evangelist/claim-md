@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "in": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Claims",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a batch claim file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/upload/",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format."
+        },
+        {
+          "info": {
+            "name": "List uploaded files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/uploadlist/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "List previously uploaded claim files with counts and amounts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Claim Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve claim status responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/response/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Incrementally retrieve claim status responses. Use ResponseID=0 initially."
+        },
+        {
+          "info": {
+            "name": "Retrieve claim modification events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/modify/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Incrementally retrieve claim field modification history."
+        },
+        {
+          "info": {
+            "name": "Retrieve claim notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/notes/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Incrementally retrieve user notes attached to claims."
+        },
+        {
+          "info": {
+            "name": "Archive a claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/archive/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Archive or delete one or more claims by claim identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ERA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List electronic remittance advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eralist/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "List ERA (835) with payment details and incremental retrieval via ERAID."
+        },
+        {
+          "info": {
+            "name": "Retrieve raw 835 ERA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/era835/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Retrieve the raw X12 835 transaction for a single ERA."
+        },
+        {
+          "info": {
+            "name": "Retrieve structured ERA detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eradata/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Retrieve claim-level remittance detail as structured XML or JSON."
+        },
+        {
+          "info": {
+            "name": "Retrieve ERA as PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/erapdf/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Retrieve a printable remittance report as a Base64-encoded PDF."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Eligibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit eligibility request (270 file)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/elig/",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Submit a real-time eligibility request as an X12 270 file (one per patient)."
+        },
+        {
+          "info": {
+            "name": "Submit eligibility request (field data)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eligdata/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit a real-time eligibility request using structured field data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the payer directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/payerlist/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Look up payers and their supported service capabilities."
+        },
+        {
+          "info": {
+            "name": "Request provider enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/enroll/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Initiate a provider enrollment request and receive an enrollment link."
+        },
+        {
+          "info": {
+            "name": "Request a claim appeal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/appeal/",
+            "body": {
+              "type": "urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Initiate a claim appeal and receive an appeal form link."
+        }
+      ]
+    }
+  ]
+}
