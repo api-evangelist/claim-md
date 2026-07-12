@@ -137,6 +137,10 @@ apis:
   description: Look up the payer directory, manage provider enrollment and appeals,
     and receive asynchronous enrollment and appeal updates via webhook.
 common:
+- type: DomainSecurity
+  url: security/claim-md-domain-security.yml
+- type: Authentication
+  url: authentication/claim-md-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/claim.md
 - type: Website
@@ -149,6 +153,8 @@ common:
   url: rate-limits/claim-md-rate-limits.yml
 - type: FinOps
   url: finops/claim-md-finops.yml
+- url: https://www.claim.md/news
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

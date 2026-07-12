@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/claim-md-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: AccountKey
+  type: apiKey
+  in: query
+  parameter: AccountKey
+  description: Account authentication key from Settings > Account Settings in the Claim.MD portal.
+    Submitted with each request (as a form field or query parameter).
+  sources:
+  - openapi/claim-md-openapi.yml
