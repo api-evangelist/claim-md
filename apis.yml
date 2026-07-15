@@ -137,6 +137,8 @@ apis:
   description: Look up the payer directory, manage provider enrollment and appeals,
     and receive asynchronous enrollment and appeal updates via webhook.
 common:
+- type: AgenticAccess
+  url: agentic-access/claim-md-agentic-access.yml
 - type: DomainSecurity
   url: security/claim-md-domain-security.yml
 - type: Authentication
