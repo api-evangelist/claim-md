@@ -1,0 +1,163 @@
+openapi: 3.0.1
+info:
+  title: Claim.MD Claim Status API
+  description: REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.
+  termsOfService: https://www.claim.md/terms
+  contact:
+    name: Claim.MD Support
+    url: https://www.claim.md/contact
+  version: '1.0'
+servers:
+- url: https://svc.claim.md
+  description: Claim.MD production API service
+security:
+- AccountKey: []
+tags:
+- name: Claim Status
+  description: Claim status responses, modifications, and notes.
+paths:
+  /services/response/:
+    post:
+      operationId: getClaimResponses
+      tags:
+      - Claim Status
+      summary: Retrieve claim status responses
+      description: Incrementally retrieve claim status responses and acknowledgements. Send ResponseID=0 for the initial request, then pass the highest returned ResponseID to fetch only newer responses. Max 20,000 results per request.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - ResponseID
+              properties:
+                AccountKey:
+                  type: string
+                ResponseID:
+                  type: integer
+                  description: Last seen ResponseID; use 0 for the initial request.
+                ClaimID:
+                  type: string
+                  description: Optional filter for a specific claim.
+      responses:
+        '200':
+          description: Claim status responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseList'
+  /services/modify/:
+    post:
+      operationId: getClaimModifications
+      tags:
+      - Claim Status
+      summary: Retrieve claim modification events
+      description: Incrementally retrieve claim field modification history.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                ModID:
+                  type: integer
+                  description: Last seen ModID for incremental updates.
+                ClaimMD_ID:
+                  type: string
+                  description: Optional filter for a specific claim.
+                Field:
+                  type: string
+                  description: Optional field-name filter.
+      responses:
+        '200':
+          description: Claim modification events.
+  /services/notes/:
+    post:
+      operationId: getClaimNotes
+      tags:
+      - Claim Status
+      summary: Retrieve claim notes
+      description: Incrementally retrieve user notes attached to claims.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                NoteID:
+                  type: integer
+                  description: Last seen NoteID for incremental updates.
+                ClaimMD_ID:
+                  type: string
+                  description: Optional filter for a specific claim.
+      responses:
+        '200':
+          description: Claim notes.
+  /services/archive/:
+    post:
+      operationId: archiveClaim
+      tags:
+      - Claim Status
+      summary: Archive a claim
+      description: Archive or delete one or more claims by claim identifier.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - claimid
+              properties:
+                AccountKey:
+                  type: string
+                claimid:
+                  type: string
+                  description: Claim identifier; may be repeated to archive multiple claims.
+      responses:
+        '200':
+          description: Archive status.
+components:
+  schemas:
+    ResponseList:
+      type: object
+      properties:
+        results:
+          type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+                properties:
+                  ResponseID:
+                    type: integer
+                  claimid:
+                    type: string
+                  remote_claimid:
+                    type: string
+                  status:
+                    type: string
+                  fieldname:
+                    type: string
+                  message:
+                    type: string
+  securitySchemes:
+    AccountKey:
+      type: apiKey
+      in: query
+      name: AccountKey
+      description: Account authentication key from Settings > Account Settings in the Claim.MD portal. Submitted with each request (as a form field or query parameter).

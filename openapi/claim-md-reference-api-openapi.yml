@@ -1,0 +1,116 @@
+openapi: 3.0.1
+info:
+  title: Claim.MD Claim Status Reference API
+  description: REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.
+  termsOfService: https://www.claim.md/terms
+  contact:
+    name: Claim.MD Support
+    url: https://www.claim.md/contact
+  version: '1.0'
+servers:
+- url: https://svc.claim.md
+  description: Claim.MD production API service
+security:
+- AccountKey: []
+tags:
+- name: Reference
+  description: Payer directory, enrollment, appeals, and webhooks.
+paths:
+  /services/payerlist/:
+    post:
+      operationId: listPayers
+      tags:
+      - Reference
+      summary: Retrieve the payer directory
+      description: Look up payers and their supported service capabilities.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                payerid:
+                  type: string
+                  description: Optional specific payer ID.
+                payer_name:
+                  type: string
+                  description: Optional payer-name wildcard search.
+      responses:
+        '200':
+          description: Payer directory.
+  /services/enroll/:
+    post:
+      operationId: requestEnrollment
+      tags:
+      - Reference
+      summary: Request provider enrollment
+      description: Initiate a provider enrollment request (ERA, paper, UB, eligibility, or attachments) and receive an enrollment link.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - payerid
+              - enroll_type
+              - prov_taxid
+              properties:
+                AccountKey:
+                  type: string
+                payerid:
+                  type: string
+                enroll_type:
+                  type: string
+                  description: Enrollment type (era, 500, ub, elig, attach).
+                prov_taxid:
+                  type: string
+                prov_npi:
+                  type: string
+                prov_name_l:
+                  type: string
+                prov_name_f:
+                  type: string
+      responses:
+        '200':
+          description: Enrollment link URL.
+  /services/appeal/:
+    post:
+      operationId: requestAppeal
+      tags:
+      - Reference
+      summary: Request a claim appeal
+      description: Initiate a claim appeal and receive an appeal form link.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                claimid:
+                  type: string
+                  description: Claim ID (or use remote_claimid).
+                remote_claimid:
+                  type: string
+                  description: Vendor-side claim identifier.
+      responses:
+        '200':
+          description: Appeal form link URL.
+components:
+  securitySchemes:
+    AccountKey:
+      type: apiKey
+      in: query
+      name: AccountKey
+      description: Account authentication key from Settings > Account Settings in the Claim.MD portal. Submitted with each request (as a form field or query parameter).

@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Claim.MD Claim Status Claims API
+  description: REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.
+  termsOfService: https://www.claim.md/terms
+  contact:
+    name: Claim.MD Support
+    url: https://www.claim.md/contact
+  version: '1.0'
+servers:
+- url: https://svc.claim.md
+  description: Claim.MD production API service
+security:
+- AccountKey: []
+tags:
+- name: Claims
+  description: Claim file upload and reconciliation.
+paths:
+  /services/upload/:
+    post:
+      operationId: uploadClaims
+      tags:
+      - Claims
+      summary: Upload a batch claim file
+      description: Upload a file containing 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format for scrubbing and routing to payers.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - File
+              properties:
+                AccountKey:
+                  type: string
+                  description: Account authentication key.
+                File:
+                  type: string
+                  format: binary
+                  description: Claim batch file.
+                Filename:
+                  type: string
+                  description: Optional original filename.
+      responses:
+        '200':
+          description: Upload accepted with claim and file identifiers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+  /services/uploadlist/:
+    post:
+      operationId: listUploads
+      tags:
+      - Claims
+      summary: List uploaded files
+      description: List previously uploaded claim files with counts and dollar amounts.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                Page:
+                  type: integer
+                  description: Page number for pagination.
+                UploadDate:
+                  type: string
+                  description: Filter by upload date (yyyy-mm-dd).
+      responses:
+        '200':
+          description: A list of uploaded files.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadListResponse'
+components:
+  schemas:
+    UploadResponse:
+      type: object
+      properties:
+        fileid:
+          type: string
+          description: Identifier assigned to the uploaded file.
+        claim:
+          type: array
+          items:
+            type: object
+            properties:
+              claimid:
+                type: string
+              accept:
+                type: string
+              field:
+                type: string
+              error:
+                type: string
+    UploadListResponse:
+      type: object
+      properties:
+        file:
+          type: array
+          items:
+            type: object
+            properties:
+              fileid:
+                type: string
+              filename:
+                type: string
+              upload_date:
+                type: string
+              claim_count:
+                type: integer
+              total_charge:
+                type: string
+  securitySchemes:
+    AccountKey:
+      type: apiKey
+      in: query
+      name: AccountKey
+      description: Account authentication key from Settings > Account Settings in the Claim.MD portal. Submitted with each request (as a form field or query parameter).

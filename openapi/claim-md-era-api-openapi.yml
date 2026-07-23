@@ -1,0 +1,171 @@
+openapi: 3.0.1
+info:
+  title: Claim.MD Claim Status ERA API
+  description: REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.
+  termsOfService: https://www.claim.md/terms
+  contact:
+    name: Claim.MD Support
+    url: https://www.claim.md/contact
+  version: '1.0'
+servers:
+- url: https://svc.claim.md
+  description: Claim.MD production API service
+security:
+- AccountKey: []
+tags:
+- name: ERA
+  description: Electronic remittance advice (835) listing and retrieval.
+paths:
+  /services/eralist/:
+    post:
+      operationId: listEra
+      tags:
+      - ERA
+      summary: List electronic remittance advice
+      description: List ERA (835) with payment details, filtered by check, payer, provider, or date, with incremental retrieval via ERAID.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              properties:
+                AccountKey:
+                  type: string
+                CheckDate:
+                  type: string
+                  description: Check date (mm-dd-yyyy).
+                ReceivedDate:
+                  type: string
+                ReceivedAfterDate:
+                  type: string
+                CheckNumber:
+                  type: string
+                CheckAmount:
+                  type: string
+                PayerID:
+                  type: string
+                NPI:
+                  type: string
+                TaxID:
+                  type: string
+                NewOnly:
+                  type: integer
+                  description: Return only new ERA (1) or all (0). Defaults to 1.
+                ERAID:
+                  type: integer
+                  description: Last seen ERAID for incremental updates.
+                Page:
+                  type: integer
+      responses:
+        '200':
+          description: A list of ERA.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EraListResponse'
+  /services/era835/:
+    post:
+      operationId: getEra835
+      tags:
+      - ERA
+      summary: Retrieve raw 835 ERA
+      description: Retrieve the raw X12 835 transaction for a single ERA.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - eraid
+              properties:
+                AccountKey:
+                  type: string
+                eraid:
+                  type: integer
+      responses:
+        '200':
+          description: Raw 835 X12 data.
+  /services/eradata/:
+    post:
+      operationId: getEraData
+      tags:
+      - ERA
+      summary: Retrieve structured ERA detail
+      description: Retrieve claim-level remittance detail with adjustment and reason codes as structured XML or JSON.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - eraid
+              properties:
+                AccountKey:
+                  type: string
+                eraid:
+                  type: integer
+      responses:
+        '200':
+          description: Structured ERA detail.
+  /services/erapdf/:
+    post:
+      operationId: getEraPdf
+      tags:
+      - ERA
+      summary: Retrieve ERA as PDF
+      description: Retrieve a printable remittance report as a Base64-encoded PDF.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - eraid
+              properties:
+                AccountKey:
+                  type: string
+                eraid:
+                  type: integer
+                pcn:
+                  type: string
+                  description: Optional specific patient/account.
+      responses:
+        '200':
+          description: Base64-encoded PDF remittance report.
+components:
+  schemas:
+    EraListResponse:
+      type: object
+      properties:
+        era:
+          type: array
+          items:
+            type: object
+            properties:
+              eraid:
+                type: integer
+              payerid:
+                type: string
+              check_number:
+                type: string
+              check_amount:
+                type: string
+              check_date:
+                type: string
+              npi:
+                type: string
+  securitySchemes:
+    AccountKey:
+      type: apiKey
+      in: query
+      name: AccountKey
+      description: Account authentication key from Settings > Account Settings in the Claim.MD portal. Submitted with each request (as a form field or query parameter).

@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: Claim.MD Claim Status Eligibility API
+  description: REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.
+  termsOfService: https://www.claim.md/terms
+  contact:
+    name: Claim.MD Support
+    url: https://www.claim.md/contact
+  version: '1.0'
+servers:
+- url: https://svc.claim.md
+  description: Claim.MD production API service
+security:
+- AccountKey: []
+tags:
+- name: Eligibility
+  description: Real-time eligibility and benefit verification (270/271).
+paths:
+  /services/elig/:
+    post:
+      operationId: submitEligibility270
+      tags:
+      - Eligibility
+      summary: Submit eligibility request (270 file)
+      description: Submit a real-time eligibility request as an X12 270 file (one request per patient) and receive a 271 response.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - AccountKey
+              - File
+              properties:
+                AccountKey:
+                  type: string
+                File:
+                  type: string
+                  format: binary
+                  description: X12 270 eligibility request file.
+      responses:
+        '200':
+          description: X12 271 eligibility response.
+  /services/eligdata/:
+    post:
+      operationId: submitEligibilityData
+      tags:
+      - Eligibility
+      summary: Submit eligibility request (field data)
+      description: Submit a real-time eligibility request using structured field data and receive detailed benefit coverage in XML or JSON.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EligibilityRequest'
+      responses:
+        '200':
+          description: Eligibility / benefit response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibilityResponse'
+components:
+  schemas:
+    EligibilityRequest:
+      type: object
+      required:
+      - AccountKey
+      - ins_name_l
+      - ins_name_f
+      - payerid
+      - pat_rel
+      - fdos
+      - prov_npi
+      - prov_taxid
+      properties:
+        AccountKey:
+          type: string
+        ins_name_l:
+          type: string
+          description: Subscriber last name.
+        ins_name_f:
+          type: string
+          description: Subscriber first name.
+        payerid:
+          type: string
+        pat_rel:
+          type: string
+          description: Patient relationship (18=Self, G8=Dependent).
+        fdos:
+          type: string
+          description: First date of service (yyyymmdd).
+        prov_npi:
+          type: string
+        prov_taxid:
+          type: string
+        service_code:
+          type: string
+          description: Benefit/service type code. Defaults to 30.
+        proc_code:
+          type: string
+          description: CPT procedure code alternative to service_code.
+        ins_number:
+          type: string
+        ins_dob:
+          type: string
+        ins_sex:
+          type: string
+        pat_name_l:
+          type: string
+        pat_name_f:
+          type: string
+        pat_dob:
+          type: string
+        pat_sex:
+          type: string
+        prov_taxid_type:
+          type: string
+          description: E=EIN, S=SSN.
+    EligibilityResponse:
+      type: object
+      properties:
+        elig:
+          type: object
+          properties:
+            ins_name:
+              type: string
+            payer_name:
+              type: string
+            plan_status:
+              type: string
+            benefit:
+              type: array
+              items:
+                type: object
+                properties:
+                  service_type:
+                    type: string
+                  coverage_level:
+                    type: string
+                  benefit_amount:
+                    type: string
+                  in_network:
+                    type: string
+  securitySchemes:
+    AccountKey:
+      type: apiKey
+      in: query
+      name: AccountKey
+      description: Account authentication key from Settings > Account Settings in the Claim.MD portal. Submitted with each request (as a form field or query parameter).
