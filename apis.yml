@@ -7,7 +7,20 @@ description: Claim.MD is a medical-claims clearinghouse that connects healthcare
   AccountKey) supports electronic claim submission (837P/837I), claim status tracking,
   electronic remittance advice (835 ERA), real-time eligibility (270/271), and file
   upload/download workflows.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/claim-md.png
 tags:
 - Healthcare
 - Medical Claims
@@ -19,123 +32,96 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: claim-md:claim-submission
-  name: Claim.MD Claim Submission API
-  tags:
-  - Claims
-  - 837
-  - 837P
-  - 837I
-  - EDI
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: claim-md:claim-md-claim-status-api
+  name: Claim.MD Claim Status API
+  description: Claim status responses, modifications, and notes.
   humanURL: https://docs.claim.md/docs/api
   baseURL: https://svc.claim.md/services
-  properties:
-  - url: https://docs.claim.md/docs/api
-    type: Documentation
-  - url: https://api.claim.md/
-    type: APIReference
-  - url: openapi/claim-md-openapi.yml
-    type: OpenAPI
-  - url: collections/claim-md.postman_collection.json
-    type: PostmanCollection
-  - url: collections/claim-md.opencollection.json
-    type: OpenCollection
-  description: Upload batches of 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS,
-    or XLSX format for scrubbing and routing to payers, then list and reconcile uploaded
-    files.
-- aid: claim-md:claim-status
-  name: Claim.MD Claim Status API
   tags:
   - Claim Status
-  - Tracking
-  - Acknowledgements
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/claim-md-claim-status-api-openapi.yml
+  - type: Documentation
+    url: https://docs.claim.md/docs/api
+  - type: APIReference
+    url: https://api.claim.md/
+  - type: PostmanCollection
+    url: collections/claim-md.postman_collection.json
+  - type: OpenCollection
+    url: collections/claim-md.opencollection.json
+- aid: claim-md:claim-md-claims-api
+  name: Claim.MD Claims API
+  description: Claim file upload and reconciliation.
   humanURL: https://docs.claim.md/docs/api
   baseURL: https://svc.claim.md/services
-  properties:
-  - url: https://docs.claim.md/docs/api
-    type: Documentation
-  - url: https://api.claim.md/
-    type: APIReference
-  - url: openapi/claim-md-openapi.yml
-    type: OpenAPI
-  - url: collections/claim-md.postman_collection.json
-    type: PostmanCollection
-  - url: collections/claim-md.opencollection.json
-    type: OpenCollection
-  description: Incrementally retrieve claim status responses, acknowledgements, and
-    claim modification and note history using ResponseID-based polling.
-- aid: claim-md:era-remits
-  name: Claim.MD ERA / Remits API
   tags:
-  - ERA
-  - 835
-  - Remittance
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Claims
+  properties:
+  - type: OpenAPI
+    url: openapi/claim-md-claims-api-openapi.yml
+  - type: Documentation
+    url: https://docs.claim.md/docs/api
+  - type: APIReference
+    url: https://api.claim.md/
+  - type: PostmanCollection
+    url: collections/claim-md.postman_collection.json
+  - type: OpenCollection
+    url: collections/claim-md.opencollection.json
+- aid: claim-md:claim-md-eligibility-api
+  name: Claim.MD Eligibility API
+  description: Real-time eligibility and benefit verification (270/271).
   humanURL: https://docs.claim.md/docs/api
   baseURL: https://svc.claim.md/services
-  properties:
-  - url: https://docs.claim.md/docs/api
-    type: Documentation
-  - url: https://api.claim.md/
-    type: APIReference
-  - url: openapi/claim-md-openapi.yml
-    type: OpenAPI
-  - url: collections/claim-md.postman_collection.json
-    type: PostmanCollection
-  - url: collections/claim-md.opencollection.json
-    type: OpenCollection
-  description: List electronic remittance advice (ERA) and retrieve remittance detail
-    as raw 835 X12, structured XML/JSON, or a printable PDF.
-- aid: claim-md:eligibility
-  name: Claim.MD Eligibility API
   tags:
   - Eligibility
-  - 270
-  - 271
-  - Benefits
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/claim-md-eligibility-api-openapi.yml
+  - type: Documentation
+    url: https://docs.claim.md/docs/api
+  - type: APIReference
+    url: https://api.claim.md/
+  - type: PostmanCollection
+    url: collections/claim-md.postman_collection.json
+  - type: OpenCollection
+    url: collections/claim-md.opencollection.json
+- aid: claim-md:claim-md-era-api
+  name: Claim.MD ERA API
+  description: Electronic remittance advice (835) listing and retrieval.
   humanURL: https://docs.claim.md/docs/api
   baseURL: https://svc.claim.md/services
-  properties:
-  - url: https://docs.claim.md/docs/api
-    type: Documentation
-  - url: https://api.claim.md/
-    type: APIReference
-  - url: openapi/claim-md-openapi.yml
-    type: OpenAPI
-  - url: collections/claim-md.postman_collection.json
-    type: PostmanCollection
-  - url: collections/claim-md.opencollection.json
-    type: OpenCollection
-  description: Run real-time eligibility and benefit verification by submitting an
-    X12 270 file or structured field data, returning a 271 response in XML or JSON
-    (one request per patient).
-- aid: claim-md:responses-files
-  name: Claim.MD Responses & Files API
   tags:
-  - Files
-  - Responses
-  - Payers
-  - Enrollment
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - ERA
+  properties:
+  - type: OpenAPI
+    url: openapi/claim-md-era-api-openapi.yml
+  - type: Documentation
+    url: https://docs.claim.md/docs/api
+  - type: APIReference
+    url: https://api.claim.md/
+  - type: PostmanCollection
+    url: collections/claim-md.postman_collection.json
+  - type: OpenCollection
+    url: collections/claim-md.opencollection.json
+- aid: claim-md:claim-md-reference-api
+  name: Claim.MD Reference API
+  description: Payer directory, enrollment, appeals, and webhooks.
   humanURL: https://docs.claim.md/docs/api
   baseURL: https://svc.claim.md/services
+  tags:
+  - Reference
   properties:
-  - url: https://docs.claim.md/docs/api
-    type: Documentation
-  - url: https://api.claim.md/
-    type: APIReference
-  - url: openapi/claim-md-openapi.yml
-    type: OpenAPI
-  - url: collections/claim-md.postman_collection.json
-    type: PostmanCollection
-  - url: collections/claim-md.opencollection.json
-    type: OpenCollection
-  description: Look up the payer directory, manage provider enrollment and appeals,
-    and receive asynchronous enrollment and appeal updates via webhook.
+  - type: OpenAPI
+    url: openapi/claim-md-reference-api-openapi.yml
+  - type: Documentation
+    url: https://docs.claim.md/docs/api
+  - type: APIReference
+    url: https://api.claim.md/
+  - type: PostmanCollection
+    url: collections/claim-md.postman_collection.json
+  - type: OpenCollection
+    url: collections/claim-md.opencollection.json
 common:
 - type: AgenticAccess
   url: agentic-access/claim-md-agentic-access.yml
