@@ -1,0 +1,22 @@
+{
+  "provider": "claim-md",
+  "sources": [
+    "claim-md-claim-status-api-openapi.yml",
+    "claim-md-claims-api-openapi.yml",
+    "claim-md-eligibility-api-openapi.yml",
+    "claim-md-era-api-openapi.yml",
+    "claim-md-reference-api-openapi.yml"
+  ],
+  "outputs": [
+    "claim-md-claim-status-api-openapi.yml",
+    "claim-md-claims-api-openapi.yml",
+    "claim-md-eligibility-api-openapi.yml",
+    "claim-md-era-api-openapi.yml",
+    "claim-md-reference-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
