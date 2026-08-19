@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD Claim Status ERA API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ERA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List electronic remittance advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eralist/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "CheckDate",
+                  "value": ""
+                },
+                {
+                  "name": "ReceivedDate",
+                  "value": ""
+                },
+                {
+                  "name": "ReceivedAfterDate",
+                  "value": ""
+                },
+                {
+                  "name": "CheckNumber",
+                  "value": ""
+                },
+                {
+                  "name": "CheckAmount",
+                  "value": ""
+                },
+                {
+                  "name": "PayerID",
+                  "value": ""
+                },
+                {
+                  "name": "NPI",
+                  "value": ""
+                },
+                {
+                  "name": "TaxID",
+                  "value": ""
+                },
+                {
+                  "name": "NewOnly",
+                  "value": ""
+                },
+                {
+                  "name": "ERAID",
+                  "value": ""
+                },
+                {
+                  "name": "Page",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "List ERA (835) with payment details, filtered by check, payer, provider, or date, with incremental retrieval via ERAID."
+        },
+        {
+          "info": {
+            "name": "Retrieve raw 835 ERA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/era835/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "eraid",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Retrieve the raw X12 835 transaction for a single ERA."
+        },
+        {
+          "info": {
+            "name": "Retrieve structured ERA detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eradata/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "eraid",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Retrieve claim-level remittance detail with adjustment and reason codes as structured XML or JSON."
+        },
+        {
+          "info": {
+            "name": "Retrieve ERA as PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/erapdf/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "eraid",
+                  "value": ""
+                },
+                {
+                  "name": "pcn",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Retrieve a printable remittance report as a Base64-encoded PDF."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

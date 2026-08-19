@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "77cd5a1d-f9cc-4abd-aa4a-e5b7a80d14d4",
+      "name": "Claims",
+      "description": {
+        "content": "Claim file upload and reconciliation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3cad81b-da1c-4792-ad7e-431f22faa8a3",
+          "name": "Upload a batch claim file",
+          "request": {
+            "name": "Upload a batch claim file",
+            "description": {
+              "content": "Upload a file containing 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format for scrubbing and routing to payers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "upload",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Account authentication key."
+                },
+                {
+                  "key": "File",
+                  "type": "file",
+                  "description": "(Required) Claim batch file."
+                },
+                {
+                  "key": "Filename",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Optional original filename."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be8ae24d-cfbe-4d21-bcac-b990fa1f29f9",
+              "name": "Upload accepted with claim and file identifiers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Account authentication key.",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Claim batch file.",
+                        "type": "text/plain"
+                      },
+                      "key": "File",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional original filename.",
+                        "type": "text/plain"
+                      },
+                      "key": "Filename",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileid\": \"string\",\n  \"claim\": [\n    {\n      \"claimid\": \"string\",\n      \"accept\": \"string\",\n      \"field\": \"string\",\n      \"error\": \"string\"\n    },\n    {\n      \"claimid\": \"string\",\n      \"accept\": \"string\",\n      \"field\": \"string\",\n      \"error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8100118-4ac2-4f06-92b2-5cbdc71d2f24",
+          "name": "List uploaded files",
+          "request": {
+            "name": "List uploaded files",
+            "description": {
+              "content": "List previously uploaded claim files with counts and dollar amounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "uploadlist",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "UploadDate",
+                  "value": "<string>",
+                  "description": "Filter by upload date (yyyy-mm-dd)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c99cbc3-f3fd-4157-ac67-57b68edb95b6",
+              "name": "A list of uploaded files.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "uploadlist",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Page number for pagination.",
+                        "type": "text/plain"
+                      },
+                      "key": "Page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Filter by upload date (yyyy-mm-dd).",
+                        "type": "text/plain"
+                      },
+                      "key": "UploadDate",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file\": [\n    {\n      \"fileid\": \"string\",\n      \"filename\": \"string\",\n      \"upload_date\": \"string\",\n      \"claim_count\": 9310,\n      \"total_charge\": \"string\"\n    },\n    {\n      \"fileid\": \"string\",\n      \"filename\": \"string\",\n      \"upload_date\": \"string\",\n      \"claim_count\": 5041,\n      \"total_charge\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://svc.claim.md",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AccountKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c98425d7-f6b6-4a43-9e6e-3dd577509509",
+    "name": "Claim.MD Claim Status Claims API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.\n\nContact Support:\n Name: Claim.MD Support",
+      "type": "text/plain"
+    }
+  }
+}

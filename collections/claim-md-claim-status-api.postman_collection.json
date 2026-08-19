@@ -1,0 +1,567 @@
+{
+  "item": [
+    {
+      "id": "c6e60b9c-110d-4b22-9d44-8283d62f8128",
+      "name": "Claim Status",
+      "description": {
+        "content": "Claim status responses, modifications, and notes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5bc8748-635b-4a93-bdc6-4bb81ada63a6",
+          "name": "Retrieve claim status responses",
+          "request": {
+            "name": "Retrieve claim status responses",
+            "description": {
+              "content": "Incrementally retrieve claim status responses and acknowledgements. Send ResponseID=0 for the initial request, then pass the highest returned ResponseID to fetch only newer responses. Max 20,000 results per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "response",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ResponseID",
+                  "value": "<integer>",
+                  "description": "(Required) Last seen ResponseID; use 0 for the initial request."
+                },
+                {
+                  "disabled": false,
+                  "key": "ClaimID",
+                  "value": "<string>",
+                  "description": "Optional filter for a specific claim."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "111d7d6b-8331-4a4f-8ca5-bc9f22dcd875",
+              "name": "Claim status responses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "response",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Last seen ResponseID; use 0 for the initial request.",
+                        "type": "text/plain"
+                      },
+                      "key": "ResponseID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional filter for a specific claim.",
+                        "type": "text/plain"
+                      },
+                      "key": "ClaimID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": {\n    \"response\": [\n      {\n        \"ResponseID\": 402,\n        \"claimid\": \"string\",\n        \"remote_claimid\": \"string\",\n        \"status\": \"string\",\n        \"fieldname\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"ResponseID\": 929,\n        \"claimid\": \"string\",\n        \"remote_claimid\": \"string\",\n        \"status\": \"string\",\n        \"fieldname\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e59c2e6d-8f20-4e23-ac6a-db3f0be1b243",
+          "name": "Retrieve claim modification events",
+          "request": {
+            "name": "Retrieve claim modification events",
+            "description": {
+              "content": "Incrementally retrieve claim field modification history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "modify",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ModID",
+                  "value": "<integer>",
+                  "description": "Last seen ModID for incremental updates."
+                },
+                {
+                  "disabled": false,
+                  "key": "ClaimMD_ID",
+                  "value": "<string>",
+                  "description": "Optional filter for a specific claim."
+                },
+                {
+                  "disabled": false,
+                  "key": "Field",
+                  "value": "<string>",
+                  "description": "Optional field-name filter."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6b59840-9e6c-412d-8237-ce66581b460f",
+              "name": "Claim modification events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "modify",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last seen ModID for incremental updates.",
+                        "type": "text/plain"
+                      },
+                      "key": "ModID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional filter for a specific claim.",
+                        "type": "text/plain"
+                      },
+                      "key": "ClaimMD_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional field-name filter.",
+                        "type": "text/plain"
+                      },
+                      "key": "Field",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41815d14-545b-487a-bd2f-26e654afe6ff",
+          "name": "Retrieve claim notes",
+          "request": {
+            "name": "Retrieve claim notes",
+            "description": {
+              "content": "Incrementally retrieve user notes attached to claims.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "notes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "NoteID",
+                  "value": "<integer>",
+                  "description": "Last seen NoteID for incremental updates."
+                },
+                {
+                  "disabled": false,
+                  "key": "ClaimMD_ID",
+                  "value": "<string>",
+                  "description": "Optional filter for a specific claim."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ae3be3c7-f746-47be-b04e-edab29d75c8c",
+              "name": "Claim notes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "notes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last seen NoteID for incremental updates.",
+                        "type": "text/plain"
+                      },
+                      "key": "NoteID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional filter for a specific claim.",
+                        "type": "text/plain"
+                      },
+                      "key": "ClaimMD_ID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1647655b-bd46-41fb-ac1b-6aa8fa301db5",
+          "name": "Archive a claim",
+          "request": {
+            "name": "Archive a claim",
+            "description": {
+              "content": "Archive or delete one or more claims by claim identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "archive",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "claimid",
+                  "value": "<string>",
+                  "description": "(Required) Claim identifier; may be repeated to archive multiple claims."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5096b3bf-f0dc-4a27-97bb-58eeffb97b09",
+              "name": "Archive status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "archive",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Claim identifier; may be repeated to archive multiple claims.",
+                        "type": "text/plain"
+                      },
+                      "key": "claimid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://svc.claim.md",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AccountKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02778872-957e-40f1-a7d1-b8a2732178e8",
+    "name": "Claim.MD Claim Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.\n\nContact Support:\n Name: Claim.MD Support",
+      "type": "text/plain"
+    }
+  }
+}

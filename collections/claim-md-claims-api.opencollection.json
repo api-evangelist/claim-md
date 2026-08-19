@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD Claim Status Claims API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Claims",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a batch claim file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/upload/",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "File",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "Filename",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file containing 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format for scrubbing and routing to payers."
+        },
+        {
+          "info": {
+            "name": "List uploaded files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/uploadlist/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "Page",
+                  "value": ""
+                },
+                {
+                  "name": "UploadDate",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "List previously uploaded claim files with counts and dollar amounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

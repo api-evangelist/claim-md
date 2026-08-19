@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD Claim Status API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Claim Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve claim status responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/response/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "ResponseID",
+                  "value": ""
+                },
+                {
+                  "name": "ClaimID",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Incrementally retrieve claim status responses and acknowledgements. Send ResponseID=0 for the initial request, then pass the highest returned ResponseID to fetch only newer responses. Max 20,000 results per request."
+        },
+        {
+          "info": {
+            "name": "Retrieve claim modification events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/modify/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "ModID",
+                  "value": ""
+                },
+                {
+                  "name": "ClaimMD_ID",
+                  "value": ""
+                },
+                {
+                  "name": "Field",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Incrementally retrieve claim field modification history."
+        },
+        {
+          "info": {
+            "name": "Retrieve claim notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/notes/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "NoteID",
+                  "value": ""
+                },
+                {
+                  "name": "ClaimMD_ID",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Incrementally retrieve user notes attached to claims."
+        },
+        {
+          "info": {
+            "name": "Archive a claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/archive/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "claimid",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Archive or delete one or more claims by claim identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,632 @@
+{
+  "item": [
+    {
+      "id": "e3adcbe7-7b0f-4432-a063-b03145d2eb41",
+      "name": "ERA",
+      "description": {
+        "content": "Electronic remittance advice (835) listing and retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ba6c3d0-8a49-4985-972a-3de206e0e8ea",
+          "name": "List electronic remittance advice",
+          "request": {
+            "name": "List electronic remittance advice",
+            "description": {
+              "content": "List ERA (835) with payment details, filtered by check, payer, provider, or date, with incremental retrieval via ERAID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "eralist",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "CheckDate",
+                  "value": "<string>",
+                  "description": "Check date (mm-dd-yyyy)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ReceivedDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ReceivedAfterDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CheckNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CheckAmount",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PayerID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "NPI",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "TaxID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "NewOnly",
+                  "value": "<integer>",
+                  "description": "Return only new ERA (1) or all (0). Defaults to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "ERAID",
+                  "value": "<integer>",
+                  "description": "Last seen ERAID for incremental updates."
+                },
+                {
+                  "disabled": false,
+                  "key": "Page",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60e055dc-b4c4-49d8-96d6-f4c433af45ed",
+              "name": "A list of ERA.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "eralist",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Check date (mm-dd-yyyy).",
+                        "type": "text/plain"
+                      },
+                      "key": "CheckDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ReceivedDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ReceivedAfterDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "CheckAmount",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PayerID",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "NPI",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "TaxID",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Return only new ERA (1) or all (0). Defaults to 1.",
+                        "type": "text/plain"
+                      },
+                      "key": "NewOnly",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last seen ERAID for incremental updates.",
+                        "type": "text/plain"
+                      },
+                      "key": "ERAID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "Page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"era\": [\n    {\n      \"eraid\": 8968,\n      \"payerid\": \"string\",\n      \"check_number\": \"string\",\n      \"check_amount\": \"string\",\n      \"check_date\": \"string\",\n      \"npi\": \"string\"\n    },\n    {\n      \"eraid\": 2542,\n      \"payerid\": \"string\",\n      \"check_number\": \"string\",\n      \"check_amount\": \"string\",\n      \"check_date\": \"string\",\n      \"npi\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcc077ef-2302-41e3-aba3-e7a4b9814f37",
+          "name": "Retrieve raw 835 ERA",
+          "request": {
+            "name": "Retrieve raw 835 ERA",
+            "description": {
+              "content": "Retrieve the raw X12 835 transaction for a single ERA.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "era835",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "eraid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7c13f6a-c360-4673-bbab-147b2b71af65",
+              "name": "Raw 835 X12 data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "era835",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "eraid",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd1f6ebe-89fe-45ee-b917-244644aa1e88",
+          "name": "Retrieve structured ERA detail",
+          "request": {
+            "name": "Retrieve structured ERA detail",
+            "description": {
+              "content": "Retrieve claim-level remittance detail with adjustment and reason codes as structured XML or JSON.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "eradata",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "eraid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c080b245-6c68-4f05-8d8a-2dfa377ec398",
+              "name": "Structured ERA detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "eradata",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "eraid",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4c99f5d-1974-4887-be7c-7abeb6c7ea9d",
+          "name": "Retrieve ERA as PDF",
+          "request": {
+            "name": "Retrieve ERA as PDF",
+            "description": {
+              "content": "Retrieve a printable remittance report as a Base64-encoded PDF.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "erapdf",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "eraid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "pcn",
+                  "value": "<string>",
+                  "description": "Optional specific patient/account."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2978aafe-195f-46ab-b4de-386295b20434",
+              "name": "Base64-encoded PDF remittance report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "erapdf",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "eraid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional specific patient/account.",
+                        "type": "text/plain"
+                      },
+                      "key": "pcn",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://svc.claim.md",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AccountKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42df7328-9bd2-48ca-857a-3a19ca3c7294",
+    "name": "Claim.MD Claim Status ERA API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.\n\nContact Support:\n Name: Claim.MD Support",
+      "type": "text/plain"
+    }
+  }
+}

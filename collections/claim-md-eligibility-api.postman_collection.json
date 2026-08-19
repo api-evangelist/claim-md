@@ -1,0 +1,487 @@
+{
+  "item": [
+    {
+      "id": "c254a57c-c280-49bf-9f66-ea67cfbfe9b8",
+      "name": "Eligibility",
+      "description": {
+        "content": "Real-time eligibility and benefit verification (270/271).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2705df6f-8c1e-4df9-817e-69f40566de84",
+          "name": "Submit eligibility request (270 file)",
+          "request": {
+            "name": "Submit eligibility request (270 file)",
+            "description": {
+              "content": "Submit a real-time eligibility request as an X12 270 file (one request per patient) and receive a 271 response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "elig",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "File",
+                  "type": "file",
+                  "description": "(Required) X12 270 eligibility request file."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d46e7b8f-bc39-4832-92d1-97d73b43f4f3",
+              "name": "X12 271 eligibility response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "elig",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) X12 270 eligibility request file.",
+                        "type": "text/plain"
+                      },
+                      "key": "File",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cb1ef62-906d-4c9b-8075-7fb8f6fce8c0",
+          "name": "Submit eligibility request (field data)",
+          "request": {
+            "name": "Submit eligibility request (field data)",
+            "description": {
+              "content": "Submit a real-time eligibility request using structured field data and receive detailed benefit coverage in XML or JSON.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "eligdata",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ins_name_l",
+                  "value": "<string>",
+                  "description": "(Required) Subscriber last name."
+                },
+                {
+                  "disabled": false,
+                  "key": "ins_name_f",
+                  "value": "<string>",
+                  "description": "(Required) Subscriber first name."
+                },
+                {
+                  "disabled": false,
+                  "key": "payerid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "pat_rel",
+                  "value": "<string>",
+                  "description": "(Required) Patient relationship (18=Self, G8=Dependent)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fdos",
+                  "value": "<string>",
+                  "description": "(Required) First date of service (yyyymmdd)."
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_npi",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_taxid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "service_code",
+                  "value": "<string>",
+                  "description": "Benefit/service type code. Defaults to 30."
+                },
+                {
+                  "disabled": false,
+                  "key": "proc_code",
+                  "value": "<string>",
+                  "description": "CPT procedure code alternative to service_code."
+                },
+                {
+                  "disabled": false,
+                  "key": "ins_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ins_dob",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ins_sex",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pat_name_l",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pat_name_f",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pat_dob",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pat_sex",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_taxid_type",
+                  "value": "<string>",
+                  "description": "E=EIN, S=SSN."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0709d441-3c12-4661-b9d3-f80c8f8b76b8",
+              "name": "Eligibility / benefit response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "eligdata",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Subscriber last name.",
+                        "type": "text/plain"
+                      },
+                      "key": "ins_name_l",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Subscriber first name.",
+                        "type": "text/plain"
+                      },
+                      "key": "ins_name_f",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payerid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Patient relationship (18=Self, G8=Dependent).",
+                        "type": "text/plain"
+                      },
+                      "key": "pat_rel",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) First date of service (yyyymmdd).",
+                        "type": "text/plain"
+                      },
+                      "key": "fdos",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "prov_npi",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "prov_taxid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Benefit/service type code. Defaults to 30.",
+                        "type": "text/plain"
+                      },
+                      "key": "service_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "CPT procedure code alternative to service_code.",
+                        "type": "text/plain"
+                      },
+                      "key": "proc_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ins_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ins_dob",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ins_sex",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "pat_name_l",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "pat_name_f",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "pat_dob",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "pat_sex",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "E=EIN, S=SSN.",
+                        "type": "text/plain"
+                      },
+                      "key": "prov_taxid_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elig\": {\n    \"ins_name\": \"string\",\n    \"payer_name\": \"string\",\n    \"plan_status\": \"string\",\n    \"benefit\": [\n      {\n        \"service_type\": \"string\",\n        \"coverage_level\": \"string\",\n        \"benefit_amount\": \"string\",\n        \"in_network\": \"string\"\n      },\n      {\n        \"service_type\": \"string\",\n        \"coverage_level\": \"string\",\n        \"benefit_amount\": \"string\",\n        \"in_network\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://svc.claim.md",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AccountKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7292922b-981b-496b-a77d-3a27906b4027",
+    "name": "Claim.MD Claim Status Eligibility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.\n\nContact Support:\n Name: Claim.MD Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD Claim Status Eligibility API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Eligibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit eligibility request (270 file)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/elig/",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "File",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit a real-time eligibility request as an X12 270 file (one request per patient) and receive a 271 response."
+        },
+        {
+          "info": {
+            "name": "Submit eligibility request (field data)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/eligdata/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit a real-time eligibility request using structured field data and receive detailed benefit coverage in XML or JSON."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Claim.MD Claim Status Reference API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AccountKey",
+      "value": "{{AccountKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the payer directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/payerlist/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "payerid",
+                  "value": ""
+                },
+                {
+                  "name": "payer_name",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Look up payers and their supported service capabilities."
+        },
+        {
+          "info": {
+            "name": "Request provider enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/enroll/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "payerid",
+                  "value": ""
+                },
+                {
+                  "name": "enroll_type",
+                  "value": ""
+                },
+                {
+                  "name": "prov_taxid",
+                  "value": ""
+                },
+                {
+                  "name": "prov_npi",
+                  "value": ""
+                },
+                {
+                  "name": "prov_name_l",
+                  "value": ""
+                },
+                {
+                  "name": "prov_name_f",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Initiate a provider enrollment request (ERA, paper, UB, eligibility, or attachments) and receive an enrollment link."
+        },
+        {
+          "info": {
+            "name": "Request a claim appeal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://svc.claim.md/services/appeal/",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "AccountKey",
+                  "value": ""
+                },
+                {
+                  "name": "claimid",
+                  "value": ""
+                },
+                {
+                  "name": "remote_claimid",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Initiate a claim appeal and receive an appeal form link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

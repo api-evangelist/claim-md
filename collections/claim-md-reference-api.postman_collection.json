@@ -1,0 +1,475 @@
+{
+  "item": [
+    {
+      "id": "9fc61ef9-0a18-442b-bdd0-6b9808d1e27b",
+      "name": "Reference",
+      "description": {
+        "content": "Payer directory, enrollment, appeals, and webhooks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fab8450c-25b5-47e1-a426-838c63e0694f",
+          "name": "Retrieve the payer directory",
+          "request": {
+            "name": "Retrieve the payer directory",
+            "description": {
+              "content": "Look up payers and their supported service capabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "payerlist",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payerid",
+                  "value": "<string>",
+                  "description": "Optional specific payer ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "payer_name",
+                  "value": "<string>",
+                  "description": "Optional payer-name wildcard search."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8cdece1b-e5e7-47bb-ad73-72fe52fb36fc",
+              "name": "Payer directory.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "payerlist",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional specific payer ID.",
+                        "type": "text/plain"
+                      },
+                      "key": "payerid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional payer-name wildcard search.",
+                        "type": "text/plain"
+                      },
+                      "key": "payer_name",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4393d599-21d0-4bc5-8fef-ba5b6ced665b",
+          "name": "Request provider enrollment",
+          "request": {
+            "name": "Request provider enrollment",
+            "description": {
+              "content": "Initiate a provider enrollment request (ERA, paper, UB, eligibility, or attachments) and receive an enrollment link.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "enroll",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payerid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enroll_type",
+                  "value": "<string>",
+                  "description": "(Required) Enrollment type (era, 500, ub, elig, attach)."
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_taxid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_npi",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_name_l",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prov_name_f",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87b32646-43b9-4136-9c7b-bd7478428f58",
+              "name": "Enrollment link URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "enroll",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payerid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Enrollment type (era, 500, ub, elig, attach).",
+                        "type": "text/plain"
+                      },
+                      "key": "enroll_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "prov_taxid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prov_npi",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prov_name_l",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prov_name_f",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e380319-c659-407b-b7f4-334f76b85d03",
+          "name": "Request a claim appeal",
+          "request": {
+            "name": "Request a claim appeal",
+            "description": {
+              "content": "Initiate a claim appeal and receive an appeal form link.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "appeal",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "AccountKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "claimid",
+                  "value": "<string>",
+                  "description": "Claim ID (or use remote_claimid)."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_claimid",
+                  "value": "<string>",
+                  "description": "Vendor-side claim identifier."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f901971e-e23d-4a6f-953a-41569b604b0a",
+              "name": "Appeal form link URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "appeal",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "AccountKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "AccountKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Claim ID (or use remote_claimid).",
+                        "type": "text/plain"
+                      },
+                      "key": "claimid",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Vendor-side claim identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "remote_claimid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://svc.claim.md",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AccountKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7454f963-5b4e-4258-81a5-dfa001ae8de4",
+    "name": "Claim.MD Claim Status Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Claim.MD medical-claims clearinghouse. The API supports electronic claim submission (837P/837I and other formats), claim status and response retrieval, electronic remittance advice (835 ERA), real-time eligibility (270/271), the payer directory, provider enrollment, appeals, and webhook notifications. All requests are authenticated with an AccountKey and responses can be returned as XML (default) or JSON via the Accept header.\n\nContact Support:\n Name: Claim.MD Support",
+      "type": "text/plain"
+    }
+  }
+}
