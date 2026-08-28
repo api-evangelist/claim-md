@@ -7,6 +7,18 @@ description: Claim.MD is a medical-claims clearinghouse that connects healthcare
   AccountKey) supports electronic claim submission (837P/837I), claim status tracking,
   electronic remittance advice (835 ERA), real-time eligibility (270/271), and file
   upload/download workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
