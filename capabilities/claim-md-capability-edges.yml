@@ -18,10 +18,11 @@ edges:
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
-  confidence: 0.88
-  evidence: POST /services/elig/  submitEligibility270  Submit eligibility request (270 file)
-  reason: 270/271 real-time eligibility transactions with EligibilityRequest/EligibilityResponse schemas
-    directly realise insurance coverage and benefits verification.
+  confidence: 0.92
+  evidence: POST /services/elig/ 'Submit eligibility request (270 file)'; schemas EligibilityRequest,
+    EligibilityResponse
+  reason: The operations submit X12 270 eligibility inquiries and return 271 responses — verification
+    of insurance coverage and benefits before service, which is precisely Eligibility & Benefits Verification.
 - tag: Claim Status
   spec_file: claim-md-claim-status-api-openapi.yml
   capability_id: BC-2870.30
@@ -29,8 +30,9 @@ edges:
   capability_name: Claim Production & Submission
   confidence: 0.85
   evidence: POST /services/response/  getClaimResponses  Retrieve claim status responses
-  reason: Clearinghouse operations for retrieving claim status responses, modifications and notes are
-    claim submission and status tracking within provider revenue cycle management.
+  reason: Clearinghouse operations for retrieving claim status responses, modification events, notes and
+    archiving claims — directly realises claim submission and status tracking within healthcare revenue
+    cycle.
 - tag: Claims
   spec_file: claim-md-claims-api-openapi.yml
   capability_id: BC-2870.30
@@ -38,14 +40,17 @@ edges:
   capability_name: Claim Production & Submission
   confidence: 0.85
   evidence: POST /services/upload/  uploadClaims  Upload a batch claim file
-  reason: Although the operations are file upload/list, the payload is 837P/837I claim batches submitted
-    to payers via a clearinghouse — claim production and submission.
+  reason: Uploading batch 837 claim files to a clearinghouse for submission to payers is claim production
+    and submission in the healthcare revenue cycle; the upload/list operations are the submission channel
+    itself, not generic file plumbing.
 - tag: ERA
   spec_file: claim-md-era-api-openapi.yml
   capability_id: BC-2870.50
   capability_id_l1: BC-2870
   capability_name: Cash Posting & Payer Reconciliation
-  confidence: 0.85
-  evidence: POST /services/era835/  getEra835  Retrieve raw 835 ERA
-  reason: 835 electronic remittance advice retrieval (list, raw, structured, PDF) is the input to posting
-    payer remittances and reconciling against expected reimbursement.
+  confidence: 0.75
+  evidence: POST /services/eralist/ listEra 'List electronic remittance advice'; 'Retrieve raw 835 ERA'
+  reason: Operations retrieve payer electronic remittance advice (835) in raw, structured and PDF form
+    — the input to posting payer payments and reconciling against expected reimbursement in the provider
+    revenue cycle. L2 cash posting/payer reconciliation is the closest fit, though the API itself only
+    delivers the remittance data, hence moderate confidence.
