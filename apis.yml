@@ -135,6 +135,9 @@ apis:
   - type: OpenCollection
     url: collections/claim-md.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/claim-md-capability-edges.yml
+  name: Claim.MD Business Capability Map
 - type: AgenticAccess
   url: agentic-access/claim-md-agentic-access.yml
 - type: DomainSecurity
