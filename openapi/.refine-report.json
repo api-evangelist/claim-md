@@ -1,22 +1,28 @@
 {
   "provider": "claim-md",
   "sources": [
-    "claim-md-claim-status-api-openapi.yml",
-    "claim-md-claims-api-openapi.yml",
-    "claim-md-eligibility-api-openapi.yml",
-    "claim-md-era-api-openapi.yml",
-    "claim-md-reference-api-openapi.yml"
+    "_original/claim-md-openapi.yml"
   ],
   "outputs": [
     "claim-md-claim-status-api-openapi.yml",
     "claim-md-claims-api-openapi.yml",
-    "claim-md-eligibility-api-openapi.yml",
     "claim-md-era-api-openapi.yml",
+    "claim-md-eligibility-api-openapi.yml",
     "claim-md-reference-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "claim-md-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "claim-md-claim-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "claim-md-claims-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "claim-md-eligibility-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "claim-md-era-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "claim-md-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
