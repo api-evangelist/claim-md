@@ -64,31 +64,6 @@ paths:
                 $ref: '#/components/schemas/EligibilityResponse'
 components:
   schemas:
-    EligibilityResponse:
-      type: object
-      properties:
-        elig:
-          type: object
-          properties:
-            ins_name:
-              type: string
-            payer_name:
-              type: string
-            plan_status:
-              type: string
-            benefit:
-              type: array
-              items:
-                type: object
-                properties:
-                  service_type:
-                    type: string
-                  coverage_level:
-                    type: string
-                  benefit_amount:
-                    type: string
-                  in_network:
-                    type: string
     EligibilityRequest:
       type: object
       required:
@@ -144,6 +119,31 @@ components:
         prov_taxid_type:
           type: string
           description: E=EIN, S=SSN.
+    EligibilityResponse:
+      type: object
+      properties:
+        elig:
+          type: object
+          properties:
+            ins_name:
+              type: string
+            payer_name:
+              type: string
+            plan_status:
+              type: string
+            benefit:
+              type: array
+              items:
+                type: object
+                properties:
+                  service_type:
+                    type: string
+                  coverage_level:
+                    type: string
+                  benefit_amount:
+                    type: string
+                  in_network:
+                    type: string
   securitySchemes:
     AccountKey:
       type: apiKey
