@@ -1,4 +1,4 @@
-# Claim.MD (claim-md)
+# Claim.MD
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,144 +66,123 @@
 
 Claim.MD is a medical-claims clearinghouse that connects healthcare providers and software vendors to thousands of payers. Its REST API (authenticated with an AccountKey) supports electronic claim submission (837P/837I), claim status tracking, electronic remittance advice (835 ERA), real-time eligibility (270/271), and file upload/download workflows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/claim-md/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/claim-md/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Medical Claims · Clearinghouse · EDI · X12 · Revenue Cycle · Health Insurance
 
-## Tags
+## Claim.MD on APIs.io
 
-- Healthcare
-- Medical Claims
-- Clearinghouse
-- EDI
-- X12
-- Revenue Cycle
+Everything profiled for Claim.MD is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/claim-md/](https://apis.io/providers/claim-md/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Claim.MD Claim Status API](https://apis.io/apis/claim-md/claim-md-claim-status-api/) — Claim status responses, modifications, and notes.
+- [Claim.MD Claims API](https://apis.io/apis/claim-md/claim-md-claims-api/) — Claim file upload and reconciliation.
+- [Claim.MD Eligibility API](https://apis.io/apis/claim-md/claim-md-eligibility-api/) — Real-time eligibility and benefit verification (270/271).
+- [Claim.MD ERA API](https://apis.io/apis/claim-md/claim-md-era-api/) — Electronic remittance advice (835) listing and retrieval.
+- [Claim.MD Reference API](https://apis.io/apis/claim-md/claim-md-reference-api/) — Payer directory, enrollment, appeals, and webhooks.
 
-## APIs
+### Published properties
 
-### Claim.MD Claim Submission API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Upload batches of 1-2000 claims in 837P, 837I, CSV, JSON, XML, XLS, or XLSX format for scrubbing and routing to payers, then list and reconcile uploaded files.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.claim.md/docs/api](https://docs.claim.md/docs/api)
-- **Base URL:** `https://svc.claim.md/services`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Claim Md Agentic Access](https://apis.io/agentic-access/claim-md/claim-md-agentic-access/)
 
-- Claims
-- 837
-- 837P
-- 837I
-- EDI
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.claim.md/docs/api)
-- [API Reference](https://api.claim.md/)
-- [OpenAPI](openapi/claim-md-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/claim-md.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/claim-md.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Claim.MD API](https://apis.io/collections/claim-md/open-claim-md/)
+- [Claim.MD Claim Status API](https://apis.io/collections/claim-md/open-claim-md-claim-status-api/)
+- [Claim.MD Claim Status Claims API](https://apis.io/collections/claim-md/open-claim-md-claims-api/)
+- [Claim.MD Claim Status Eligibility API](https://apis.io/collections/claim-md/open-claim-md-eligibility-api/)
+- [Claim.MD Claim Status ERA API](https://apis.io/collections/claim-md/open-claim-md-era-api/)
+- [Claim.MD Claim Status Reference API](https://apis.io/collections/claim-md/open-claim-md-reference-api/)
 
-### Claim.MD Claim Status API
+#### Security (2)
 
-Incrementally retrieve claim status responses, acknowledgements, and claim modification and note history using ResponseID-based polling.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.claim.md/docs/api](https://docs.claim.md/docs/api)
-- **Base URL:** `https://svc.claim.md/services`
+- [Claim Md Authentication](https://apis.io/security/claim-md/claim-md-authentication/)
+- [Claim Md Domain Security](https://apis.io/security/claim-md/claim-md-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Claim Status
-- Tracking
-- Acknowledgements
+Published plans, tiers and prices.
 
-#### Properties
+- [Claim Md Plans Pricing](https://apis.io/plans/claim-md/claim-md-plans-pricing/)
 
-- [Documentation](https://docs.claim.md/docs/api)
-- [API Reference](https://api.claim.md/)
-- [OpenAPI](openapi/claim-md-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/claim-md.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/claim-md.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Claim.MD ERA / Remits API
+Published request limits.
 
-List electronic remittance advice (ERA) and retrieve remittance detail as raw 835 X12, structured XML/JSON, or a printable PDF.
+- [Claim Md Rate Limits](https://apis.io/rate-limits/claim-md/claim-md-rate-limits/)
 
-- **Human URL:** [https://docs.claim.md/docs/api](https://docs.claim.md/docs/api)
-- **Base URL:** `https://svc.claim.md/services`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- ERA
-- 835
-- Remittance
-- Payments
+- [Claim Md Finops](https://apis.io/finops/claim-md/claim-md-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.claim.md/docs/api)
-- [API Reference](https://api.claim.md/)
-- [OpenAPI](openapi/claim-md-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/claim-md.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/claim-md.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Claim.MD Eligibility API
-
-Run real-time eligibility and benefit verification by submitting an X12 270 file or structured field data, returning a 271 response in XML or JSON (one request per patient).
-
-- **Human URL:** [https://docs.claim.md/docs/api](https://docs.claim.md/docs/api)
-- **Base URL:** `https://svc.claim.md/services`
-
-#### Tags
-
-- Eligibility
-- 270
-- 271
-- Benefits
-
-#### Properties
-
-- [Documentation](https://docs.claim.md/docs/api)
-- [API Reference](https://api.claim.md/)
-- [OpenAPI](openapi/claim-md-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/claim-md.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/claim-md.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Claim.MD Responses & Files API
-
-Look up the payer directory, manage provider enrollment and appeals, and receive asynchronous enrollment and appeal updates via webhook.
-
-- **Human URL:** [https://docs.claim.md/docs/api](https://docs.claim.md/docs/api)
-- **Base URL:** `https://svc.claim.md/services`
-
-#### Tags
-
-- Files
-- Responses
-- Payers
-- Enrollment
-
-#### Properties
-
-- [Documentation](https://docs.claim.md/docs/api)
-- [API Reference](https://api.claim.md/)
-- [OpenAPI](openapi/claim-md-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/claim-md.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/claim-md.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/claim.md)
 - [Website](https://www.claim.md)
 - [Documentation](https://docs.claim.md/docs/index)
-- [Plans](plans/claim-md-plans-pricing.yml)
-- [Rate Limits](rate-limits/claim-md-rate-limits.yml)
-- [Fin Ops](finops/claim-md-finops.yml)
+- [Blog](https://www.claim.md/news)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.5** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/claim-md/](https://apis.io/providers/claim-md/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Claim.MD: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/claim-md/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
